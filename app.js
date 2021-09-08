@@ -96,6 +96,10 @@ function createGalleryCardsMarkup(images) {
 `
   }).join('')
 }
+function ligthImageAttributs(src, alt) {
+  ligthImage.setAttribute('src', src)
+  ligthImage.setAttribute('alt', alt)
+}
 
 function onGalleryContainerClick(e) {
   e.preventDefault()
@@ -107,19 +111,19 @@ function onGalleryContainerClick(e) {
     return
   }
   lightboxContainer.classList.add('is-open')
-  ligthImage.src = e.target.dataset.source
-  ligthImage.alt = e.target.alt
 
+  ligthImageAttributs(e.target.dataset.source, e.target.alt)
 
 }
 
 function onCloseBtnModal() {
   lightboxContainer.classList.remove('is-open')
-  ligthImage.src = ' '
-  ligthImage.alt = ' '
+  ligthImageAttributs(' ', ' ')
   window.removeEventListener('keydown', onEcsKeyPress)
   window.removeEventListener('keydown', handleKeydown)
 }
+
+
 
 function onEcsKeyPress(e) {
   if (e.code !== 'Escape') {
@@ -133,7 +137,7 @@ overlay.addEventListener('click', onCloseBtnModal)
 
 function handleKeydown(e) {
   let currentIndex = 0;
-  galleryItems.forEach(img => {
+  galleryItems.findIndex(img => {
     if (img.original === ligthImage.src) {
       currentIndex = galleryItems.indexOf(img);
     }
