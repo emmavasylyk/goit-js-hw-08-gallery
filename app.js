@@ -136,12 +136,7 @@ overlay.addEventListener('click', onCloseBtnModal)
 
 
 function handleKeydown(e) {
-  let currentIndex = 0;
-  galleryItems.findIndex(img => {
-    if (img.original === ligthImage.src) {
-      currentIndex = galleryItems.indexOf(img);
-    }
-  });
+  let currentIndex = galleryItems.findIndex(img => img.original === ligthImage.src)
 
   let nextIndex = currentIndex + 1;
   let previousIndex = currentIndex - 1;
